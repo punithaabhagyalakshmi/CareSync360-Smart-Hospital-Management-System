@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <meta http-equiv="refresh" content="10">
+</head>
+<body>
+
+<div class="header">
+    📊 Admin Dashboard
+    <div id="clock"></div>
+</div>
+
+<div style="margin-bottom:20px;">
+    <a href="/" class="add-btn">➕ Add New Patient</a>
+</div>
+
+<div class="container">
+
+    <!-- DASHBOARD CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total Waiting</h3>
+            <p>{{ total_waiting }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Emergency Cases</h3>
+            <p>{{ emergency_count }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Completed</h3>
+            <p>{{ completed_count }}</p>
+        </div>
+    </div>
+
+    <h3>🎟️ Patient Queue</h3>
+    <a href="/history">📜 View Patient History</a>
+
+    <table id="patientTable">
+        <thead>
+            <tr>
+                <th>Patient ID</th>
+                <th>Token</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for p in patients %}
+            <tr>
+                <td>{{ p.patient_id }}</td>
+                <td>{{ p.token }}</td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.department }}</td>
+
+                <td class="
+                    {% if p.category == 'Emergency' %}emergency
+                    {% elif p.category == 'Senior' %}senior
+                    {% else %}normal
+                    {% endif %}
+                ">
+                    {{ p.category }}
+                </td>
+
+                <td>
+                    <span class="badge
+                        {% if p.status == 'Waiting' %}waiting
+                        {% elif p.status == 'In Consultation' %}consult
+                        {% else %}completed
+                        {% endif %}
+                    ">
+                        {{ p.status }}
+                    </span>
+                </td>
+
+                <td>
+                    {% if p.status == "Waiting" %}
+                        <a href="/consult/{{ p.id }}">Start</a>
+                    {% elif p.status == "In Consultation" %}
+                        <a href="/complete/{{ p.id }}">Complete</a>
+                    {% else %}
+                        ✔
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

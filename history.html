@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="header">
+    📜 Patient Visit History
+</div>
+
+<div class="container">
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Enter Patient Name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if visits %}
+        <h3>Visit Records:</h3>
+        <table>
+            <tr>
+                <th>Patient ID</th>
+                <th>Token</th>
+                <th>Department</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+
+            {% for visit in visits %}
+            <tr>
+                <td>{{ visit.patient_id }}</td>
+                <td>{{ visit.token }}</td>
+                <td>{{ visit.department }}</td>
+                <td>{{ visit.category }}</td>
+                <td>{{ visit.status }}</td>
+                <td>{{ visit.time }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <br>
+    <a href="/dashboard">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>
