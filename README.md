@@ -98,7 +98,7 @@ In `app.py`, replace with your Firebase Realtime Database URL:
 
 python
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://your-project-id-default-rtdb.firebaseio.com/'
+    'databaseURL': 'firebase-adminsdk-fbsvc@caresync360-b1751.iam.gserviceaccount.com'
 })
 
 ● 5. Run the Application
