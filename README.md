@@ -98,7 +98,7 @@ In `app.py`, replace with your Firebase Realtime Database URL:
 
 python
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'firebase-adminsdk-fbsvc@caresync360-b1751.iam.gserviceaccount.com'
+    'databaseURL': 'https://your-project-id-default-rtdb.firebaseio.com/'
 })
 
 ● 5. Run the Application
@@ -113,14 +113,14 @@ Provide scalable healthcare management
 
 ## 👥 Team
 Developed by a team of 3 members.
-Punithaa Bhagyalakshmi G 
-Kumutha S
-Gopika P
+● Punithaa Bhagyalakshmi G
+● Kumutha S
+● Gopika P
 
 Developed as part of:
-FORGEX 2026 – 10 Hour Hackathon
-Department of Information Science and Technology
-Anna University
+FORGEX 2026 – 10 Hour Hackathon,
+Department of Information Science and Technology,
+Anna University.
 25/02/2026
 
 # 📜 License
